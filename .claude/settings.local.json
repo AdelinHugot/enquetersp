@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir:*)",
+      "Bash(powershell -Command:*)",
+      "Bash(xxd:*)",
+      "Bash(for file in package.json tsconfig.json vite.config.ts index.html types.ts)",
+      "Bash(do echo \"=== $file ===\")",
+      "Bash(done)",
+      "Bash(gh auth status:*)",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
+    ]
+  }
+}
