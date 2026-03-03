@@ -37,39 +37,39 @@ const PriorityInput: React.FC<{
   onOtherTextChange?: (text: string) => void;
 }> = ({ options, value, onSelect, otherText, onOtherTextChange }) => {
   return (
-    <div className="space-y-4">
-      <p className="text-xs font-black text-slate-500 uppercase tracking-widest mb-6">
+    <div className="space-y-3">
+      <p className="text-xs font-black text-slate-500 uppercase tracking-widest mb-5">
         Cliquez sur les options dans votre ordre d'importance :
       </p>
-      <div className="space-y-3">
+      <div className="space-y-2">
         {options.map((option) => {
           const priorityIndex = value.indexOf(option.id);
           const isSelected = priorityIndex !== -1;
-          
+
           return (
-            <div key={option.id} className="flex flex-col gap-3">
+            <div key={option.id} className="flex flex-col gap-2">
               <button
                 onClick={() => onSelect(option.id)}
                 className={`
-                  group w-full flex items-center justify-between p-6 rounded-[1.5rem] border-2 transition-all duration-300
-                  ${isSelected 
-                    ? 'border-[#FFBE00] bg-[#FFBE00] shadow-[0_10px_30px_rgba(255,190,0,0.15)] scale-[1.01]' 
+                  group w-full flex items-center justify-between p-4 rounded-2xl border-2 transition-all duration-300
+                  ${isSelected
+                    ? 'border-[#FFBE00] bg-[#FFBE00]/10 shadow-[0_4px_20px_rgba(255,190,0,0.08)]'
                     : 'border-white/5 bg-white/5 hover:border-white/20 hover:bg-white/10'}
                 `}
               >
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3">
                   {isSelected && (
-                    <div className="w-8 h-8 rounded-full bg-[#001D3D] flex items-center justify-center text-[#FFBE00] font-black text-xs">
+                    <div className="w-7 h-7 rounded-full bg-[#FFBE00] flex items-center justify-center text-[#001D3D] font-black text-xs flex-shrink-0">
                       {priorityIndex + 1}
                     </div>
                   )}
-                  <span className={`font-bold text-lg transition-colors ${isSelected ? 'text-[#001D3D]' : 'text-slate-300'}`}>
+                  <span className={`font-bold text-base transition-colors ${isSelected ? 'text-white' : 'text-slate-300'}`}>
                     {option.label}
                   </span>
                 </div>
                 {!isSelected && (
-                  <div className="w-8 h-8 rounded-xl border-2 border-white/10 bg-white/5 flex items-center justify-center">
-                    <ArrowUp className="w-4 h-4 text-slate-600 group-hover:text-white transition-colors" />
+                  <div className="w-7 h-7 rounded-lg border-2 border-white/10 bg-white/5 flex items-center justify-center flex-shrink-0">
+                    <ArrowUp className="w-3.5 h-3.5 text-slate-600 group-hover:text-white transition-colors" />
                   </div>
                 )}
               </button>
@@ -82,7 +82,7 @@ const PriorityInput: React.FC<{
                     value={otherText || ''}
                     onChange={(e) => onOtherTextChange?.(e.target.value)}
                     placeholder={option.inputPlaceholder || "Précisez ici..."}
-                    className="w-full p-5 rounded-2xl border-2 border-[#FFBE00]/30 focus:border-[#FFBE00] focus:outline-none bg-[#001D3D] text-white font-bold placeholder:text-slate-600 shadow-inner"
+                    className="w-full p-4 rounded-2xl border-2 border-[#FFBE00]/30 focus:border-[#FFBE00] focus:outline-none bg-[#001D3D] text-white font-bold placeholder:text-slate-600 shadow-inner"
                   />
                 </div>
               )}
@@ -91,7 +91,7 @@ const PriorityInput: React.FC<{
         })}
       </div>
       {value.length > 0 && (
-        <div className="mt-8 flex flex-wrap gap-2 animate-in fade-in slide-in-from-bottom-2">
+        <div className="mt-5 flex flex-wrap gap-2 animate-in fade-in slide-in-from-bottom-2">
           {value.map((id, index) => (
             <div key={id} className="bg-white/10 border border-white/10 rounded-full px-4 py-2 flex items-center gap-2">
               <span className="text-[10px] font-black text-[#FFBE00]">{index + 1}</span>
@@ -135,10 +135,10 @@ const ConsumptionInput: React.FC<{ value: string; onChange: (val: string) => voi
   };
 
   return (
-    <div className="w-full space-y-8 animate-in fade-in duration-500">
-      <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-end gap-6">
+    <div className="w-full space-y-5 animate-in fade-in duration-500">
+      <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-end gap-5">
         <div className="relative group">
-          <label className="block text-[10px] font-black text-slate-500 uppercase tracking-widest mb-4 ml-2 group-focus-within:text-[#FFBE00] transition-colors">
+          <label className="block text-[10px] font-black text-slate-500 uppercase tracking-widest mb-3 ml-2 group-focus-within:text-[#FFBE00] transition-colors">
             Consommation annuelle (kWh)
           </label>
           <div className="relative">
@@ -151,9 +151,9 @@ const ConsumptionInput: React.FC<{ value: string; onChange: (val: string) => voi
                 syncParent(e.target.value, euro);
               }}
               placeholder="Ex: 4500"
-              className="w-full p-6 pr-16 rounded-2xl border-2 border-white/10 focus:border-[#FFBE00] focus:outline-none bg-white/5 text-white font-bold text-xl transition-all shadow-inner"
+              className="w-full p-5 pr-16 rounded-2xl border-2 border-white/10 focus:border-[#FFBE00] focus:outline-none bg-white/5 text-white font-bold text-lg transition-all shadow-inner"
             />
-            <div className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-500 font-black text-xs select-none">kWh</div>
+            <div className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-500 font-black text-xs select-none">kWh</div>
           </div>
         </div>
 
@@ -163,18 +163,18 @@ const ConsumptionInput: React.FC<{ value: string; onChange: (val: string) => voi
             onClick={handleManualConvert}
             disabled={(!!kwh && !!euro) || (!kwh && !euro)}
             className={`
-              w-12 h-12 rounded-xl flex items-center justify-center transition-all border-2
+              w-10 h-10 rounded-xl flex items-center justify-center transition-all border-2
               ${(!!kwh && !!euro) || (!kwh && !euro)
                 ? 'bg-white/5 border-white/10 text-slate-600 cursor-not-allowed opacity-50'
                 : 'bg-[#FFBE00] border-[#FFBE00] text-[#001D3D] shadow-lg hover:scale-110 active:scale-95'}
             `}
           >
-            <RefreshCw className="w-6 h-6" />
+            <RefreshCw className="w-5 h-5" />
           </button>
         </div>
 
         <div className="relative group">
-          <label className="block text-[10px] font-black text-slate-500 uppercase tracking-widest mb-4 ml-2 group-focus-within:text-[#FFBE00] transition-colors">
+          <label className="block text-[10px] font-black text-slate-500 uppercase tracking-widest mb-3 ml-2 group-focus-within:text-[#FFBE00] transition-colors">
             Budget annuel (€)
           </label>
           <div className="relative">
@@ -187,9 +187,9 @@ const ConsumptionInput: React.FC<{ value: string; onChange: (val: string) => voi
                 syncParent(kwh, e.target.value);
               }}
               placeholder="Ex: 990"
-              className="w-full p-6 pr-16 rounded-2xl border-2 border-white/10 focus:border-[#FFBE00] focus:outline-none bg-white/5 text-white font-bold text-xl transition-all shadow-inner"
+              className="w-full p-5 pr-16 rounded-2xl border-2 border-white/10 focus:border-[#FFBE00] focus:outline-none bg-white/5 text-white font-bold text-lg transition-all shadow-inner"
             />
-            <div className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-500 font-black text-xs select-none">€ / AN</div>
+            <div className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-500 font-black text-xs select-none">€ / AN</div>
           </div>
         </div>
       </div>
@@ -340,8 +340,8 @@ const CompletionScreen: React.FC<{
 const ScaleInput: React.FC<{ value: string; onChange: (val: string) => void; options: any[] }> = ({ value, onChange, options }) => {
   const val = parseInt(value) || 3;
   return (
-    <div className="w-full py-10 px-4">
-      <div className="relative h-3 bg-white/10 rounded-full mb-14">
+    <div className="w-full py-6 px-4">
+      <div className="relative h-3 bg-white/10 rounded-full mb-10">
         <div 
           className="absolute top-0 left-0 h-full bg-[#FFBE00] rounded-full transition-all duration-300 shadow-[0_0_15px_rgba(255,190,0,0.3)]"
           style={{ width: `${((val - 1) / (options.length - 1)) * 100}%` }}
@@ -377,6 +377,37 @@ const ScaleInput: React.FC<{ value: string; onChange: (val: string) => void; opt
     </div>
   );
 };
+
+// --- Grid Layout Helper ---
+
+function getGridClass(question: Question): string {
+  if (question.type === 'priority') return 'space-y-3';
+  const count = question.options?.length || 0;
+  const hasImages = question.options?.some(o => o.image);
+
+  if (question.layout === 'grid') {
+    let cols: string;
+    if (hasImages) {
+      cols = count <= 3 ? 'md:grid-cols-3' : 'md:grid-cols-4';
+    } else if (count === 3) {
+      cols = 'md:grid-cols-3';
+    } else if (count === 4) {
+      cols = 'md:grid-cols-2';
+    } else if (count >= 7) {
+      cols = 'md:grid-cols-4';
+    } else {
+      cols = 'md:grid-cols-3';
+    }
+    return `grid grid-cols-1 ${cols} gap-4`;
+  }
+
+  // Non-grid with exactly 2 options → côte à côte
+  if (count === 2 && (question.type === 'single' || question.type === 'multiple')) {
+    return 'grid grid-cols-2 gap-4';
+  }
+
+  return 'space-y-3';
+}
 
 // --- Main App Component ---
 
@@ -555,7 +586,7 @@ export default function App() {
         <main className="flex-grow flex items-center justify-center p-6 lg:p-16">
           <div className="w-full max-w-4xl">
             {flow === 'questions' && (
-              <div className="mb-14 max-w-2xl mx-auto">
+              <div className="mb-10 max-w-2xl mx-auto">
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-[10px] font-black tracking-widest text-[#FFBE00] uppercase">
                     {currentQuestion?.section}
@@ -569,7 +600,7 @@ export default function App() {
             )}
 
             <div className="min-h-[450px] flex flex-col items-center">
-              <div className={`w-full ${currentQuestion?.layout === 'grid' && currentQuestion?.options?.length && currentQuestion.options.length >= 3 ? 'max-w-5xl' : 'max-w-2xl'}`}>
+              <div className={`w-full ${currentQuestion?.options?.some(o => o.image) ? 'max-w-5xl' : 'max-w-2xl'}`}>
                 {flow === 'selector' && (
                   <QuestionnaireSelector onSelect={startQuestionnaire} />
                 )}
@@ -590,21 +621,11 @@ export default function App() {
 
                 {flow === 'questions' && currentQuestion && (
                   <div className="animate-in slide-in-from-right-4 duration-500 flex-grow flex flex-col">
-                    <h3 className="text-3xl lg:text-4xl font-black text-white mb-12 leading-tight tracking-tight">
+                    <h3 className="text-2xl lg:text-3xl font-black text-white mb-8 leading-tight tracking-tight">
                       {currentQuestion.text}
                     </h3>
 
-                    <div className={`flex-grow
-                      ${currentQuestion.layout === 'grid' && currentQuestion.type !== 'priority'
-                        ? `grid grid-cols-1 ${
-                            currentQuestion.options?.length === 3 
-                              ? 'md:grid-cols-3' 
-                              : currentQuestion.options?.length && currentQuestion.options.length >= 4 
-                                ? 'md:grid-cols-4' 
-                                : 'md:grid-cols-2'
-                          } gap-5` 
-                        : 'space-y-4'}
-                    `}>
+                    <div className={`flex-grow ${getGridClass(currentQuestion)}`}>
                       {currentQuestion.type === 'priority' ? (
                         <PriorityInput 
                           options={currentQuestion.options || []}
@@ -669,20 +690,20 @@ export default function App() {
                               <button
                                 onClick={() => handleOptionSelect(option.id)}
                                 className={`
-                                  group w-full flex items-center justify-between p-6 rounded-[1.5rem] border-2 transition-all duration-300
-                                  ${isSelected 
-                                    ? 'border-[#FFBE00] bg-[#FFBE00] shadow-[0_10px_30px_rgba(255,190,0,0.15)] scale-[1.02]' 
+                                  group w-full flex items-center justify-between p-4 rounded-2xl border-2 transition-all duration-300
+                                  ${isSelected
+                                    ? 'border-[#FFBE00] bg-[#FFBE00]/10 shadow-[0_4px_20px_rgba(255,190,0,0.08)]'
                                     : 'border-white/5 bg-white/5 hover:border-white/20 hover:bg-white/10'}
                                 `}
                               >
-                                <span className={`font-bold text-lg transition-colors ${isSelected ? 'text-[#001D3D]' : 'text-slate-300'}`}>
+                                <span className={`font-bold text-base transition-colors ${isSelected ? 'text-white' : 'text-slate-300'}`}>
                                   {option.label}
                                 </span>
                                 <div className={`
-                                  w-8 h-8 rounded-xl border-2 flex items-center justify-center transition-all
-                                  ${isSelected ? 'bg-[#001D3D] border-[#001D3D]' : 'border-white/10 bg-white/5'}
+                                  w-7 h-7 rounded-lg border-2 flex items-center justify-center transition-all flex-shrink-0
+                                  ${isSelected ? 'bg-[#FFBE00]/20 border-[#FFBE00]' : 'border-white/10 bg-white/5'}
                                 `}>
-                                  {isSelected && <CheckCircle2 className="w-5 h-5 text-[#FFBE00]" />}
+                                  {isSelected && <CheckCircle2 className="w-4 h-4 text-[#FFBE00]" />}
                                 </div>
                               </button>
 
@@ -694,7 +715,7 @@ export default function App() {
                                     value={answers[currentQuestion.id]?.otherText || ''}
                                     onChange={(e) => updateAnswer(currentQuestion.id, answers[currentQuestion.id]?.value, e.target.value)}
                                     placeholder={option.inputPlaceholder || "Précisez ici..."}
-                                    className="w-full p-5 rounded-2xl border-2 border-[#FFBE00]/30 focus:border-[#FFBE00] focus:outline-none bg-[#001D3D] text-white font-bold placeholder:text-slate-600 shadow-inner"
+                                    className="w-full p-4 rounded-2xl border-2 border-[#FFBE00]/30 focus:border-[#FFBE00] focus:outline-none bg-[#001D3D] text-white font-bold placeholder:text-slate-600 shadow-inner"
                                   />
                                 </div>
                               )}
@@ -710,7 +731,7 @@ export default function App() {
                           value={answers[currentQuestion.id]?.value as string || ''}
                           onChange={(e) => updateAnswer(currentQuestion.id, e.target.value)}
                           placeholder={currentQuestion.placeholder}
-                          className="w-full p-7 rounded-2xl border-2 border-white/10 focus:border-[#FFBE00] focus:outline-none bg-white/5 text-white font-bold placeholder:text-slate-600 text-xl shadow-inner transition-all"
+                          className="w-full p-5 rounded-2xl border-2 border-white/10 focus:border-[#FFBE00] focus:outline-none bg-white/5 text-white font-bold placeholder:text-slate-600 text-lg shadow-inner transition-all"
                         />
                       )}
 
@@ -721,19 +742,19 @@ export default function App() {
                           value={answers[currentQuestion.id]?.value as string || ''}
                           onChange={(e) => updateAnswer(currentQuestion.id, e.target.value)}
                           placeholder={currentQuestion.placeholder}
-                          className="w-full p-8 rounded-[2rem] border-2 border-white/10 focus:border-[#FFBE00] focus:outline-none bg-white/5 text-white font-bold placeholder:text-slate-600 text-xl shadow-inner resize-none transition-all"
+                          className="w-full p-5 rounded-2xl border-2 border-white/10 focus:border-[#FFBE00] focus:outline-none bg-white/5 text-white font-bold placeholder:text-slate-600 text-lg shadow-inner resize-none transition-all"
                         />
                       )}
                     </div>
 
                     {error && (
-                      <div className="flex items-center gap-3 text-[#FFBE00] text-xs font-black uppercase tracking-widest mt-8 animate-pulse">
+                      <div className="flex items-center gap-3 text-[#FFBE00] text-xs font-black uppercase tracking-widest mt-5 animate-pulse">
                         <AlertCircle className="w-5 h-5" />
                         {error}
                       </div>
                     )}
 
-                    <div className="flex items-center justify-between mt-14 pt-8 border-t border-white/5">
+                    <div className="flex items-center justify-between mt-10 pt-6 border-t border-white/5">
                       <button
                         onClick={handlePrev}
                         disabled={isSubmitting}
