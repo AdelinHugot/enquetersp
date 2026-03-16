@@ -136,6 +136,20 @@ export const QUESTIONS_DECOUVERTE: Question[] = [
     ],
     required: true
   },
+  {
+    id: 'connaissance_stockage_surplus',
+    section: 'Découverte',
+    text: 'Connaissez-vous les différentes façons de stocker votre surplus solaire ?',
+    type: 'multiple',
+    layout: 'grid',
+    options: [
+      { id: 'revente', label: 'Revente' },
+      { id: 'batterie_physique', label: 'Batterie physique' },
+      { id: 'batterie_virtuelle', label: 'Batterie virtuelle' },
+      { id: 'rien', label: 'Rien de tout ça' }
+    ],
+    required: true
+  },
 
   // --- PHASE 4 : MOTIVATIONS ET ATTENTES ---
   {
